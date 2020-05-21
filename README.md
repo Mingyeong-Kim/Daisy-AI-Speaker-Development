@@ -1,8 +1,8 @@
 # Mingyeong Kim 
-![mingyeong](https://user-images.githubusercontent.com/65681568/82523454-42085300-9b67-11ea-981c-9d7bb219b58c.PNG)
 <img width="500" alt="mingyeong" src="https://user-images.githubusercontent.com/65681568/82523454-42085300-9b67-11ea-981c-9d7bb219b58c.PNG">
 
 ![mingyeong2](https://user-images.githubusercontent.com/65681568/82523457-43398000-9b67-11ea-9acf-1d9cb2b1441b.PNG)
+<img width="500" alt="mingyeong2" src="https://user-images.githubusercontent.com/65681568/82523457-43398000-9b67-11ea-9acf-1d9cb2b1441b.PNG">
 
 
 ## Where are you from?
