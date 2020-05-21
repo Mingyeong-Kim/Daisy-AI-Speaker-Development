@@ -1,7 +1,7 @@
 # Mingyeong Kim 
-![mingyeong2](https://user-images.githubusercontent.com/65681568/82521980-09ff1100-9b63-11ea-9f59-99a573b9e6c7.jpg)
+![mingyeong](https://user-images.githubusercontent.com/65681568/82523454-42085300-9b67-11ea-981c-9d7bb219b58c.PNG)
 
-![mingyeong](https://user-images.githubusercontent.com/65681568/82521971-04093000-9b63-11ea-90f7-4b524c23627c.jpg)
+![mingyeong2](https://user-images.githubusercontent.com/65681568/82523457-43398000-9b67-11ea-9acf-1d9cb2b1441b.PNG)
 
 
 ## Where are you from?
