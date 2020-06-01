@@ -16,6 +16,6 @@ Speech installation
 
 2. install SpeechRecognition - pip install SpeechRecognition
 
-3. download python library (PyPI)
+3. download python library (from PyPI)
 
 4. python setup.py install
