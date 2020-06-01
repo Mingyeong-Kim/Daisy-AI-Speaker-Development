@@ -1,1 +1,1 @@
-# Daisy project (Mingyeong Kim)
+# Daisy project
