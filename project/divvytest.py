@@ -1,3 +1,7 @@
+'''
+author: Mingyeong Kim
+'''
+
 import sqlite3
 import pyttsx3
 engine = pyttsx3.init()
