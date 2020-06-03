@@ -2,8 +2,6 @@
 # NOTE: this example requires PyAudio because it uses the Microphone class
 
 import speech_recognition as sr
-print(sr.__version__)
-
 
 # obtain audio from the microphone
 r = sr.Recognizer()
