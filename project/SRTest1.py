@@ -1,5 +1,5 @@
 
-# NOTE: this example requires PyAudio because it uses the Microphone class
+# this example requires PyAudio because it uses the Microphone class
 
 import speech_recognition as sr
 
