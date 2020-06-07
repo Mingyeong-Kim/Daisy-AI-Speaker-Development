@@ -5,7 +5,13 @@ import speech_recognition as sr
 
 # obtain audio from the microphone
 r = sr.Recognizer()
+# r.energy_threshold = 200
+# r.dynamic_energy_threshold = True 
 with sr.Microphone() as source:
+    print("Please wait. Calibrating microphone...")   
+    # listen for 5 seconds and create the ambient noise energy level   
+    r.adjust_for_ambient_noise(source, duration=10)  
+    # r.dynamic_energy_threshold = True  
     print("Say something!")
     audio = r.listen(source)
 
