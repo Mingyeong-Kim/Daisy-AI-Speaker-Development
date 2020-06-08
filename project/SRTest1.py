@@ -2,6 +2,9 @@
 # this example requires PyAudio because it uses the Microphone class
 
 import speech_recognition as sr
+import pyttsx3
+
+engine = pyttsx3.init()
 
 # obtain audio from the microphone
 r = sr.Recognizer()
@@ -20,6 +23,8 @@ with sr.Microphone() as source:
 # recognize speech using Sphinx
 try:
     print("Sphinx thinks you said " + r.recognize_sphinx(audio))
+    engine.say(r.recognize_sphinx(audio))
+    engine.runAndWait()
 except sr.UnknownValueError:
     print("Sphinx could not understand audio")
 except sr.RequestError as e:
