@@ -7,17 +7,17 @@ import pyttsx3
 engine = pyttsx3.init()
 rate = engine.getProperty('rate')   # getting details of current speaking rate
 print (rate)                        #printing current voice rate
-engine.setProperty('rate', 100) 
+engine.setProperty('rate', 130) 
 
 # obtain audio from the microphone
 r = sr.Recognizer()
+
 with sr.Microphone() as source:
     print("Please wait. Calibrating microphone...")
-    # r.energy_threshold = 2500   
     # listen for 5 seconds and create the ambient noise energy level   
-    r.adjust_for_ambient_noise(source, duration=1) 
-    r.energy_threshold = 2500    
-    # r.dynamic_energy_threshold = True  
+    r.adjust_for_ambient_noise(source, duration=3) 
+    r.energy_threshold = 3500   
+    r.dynamic_energy_threshold = True    
     print("Say something!")
     audio = r.listen(source)
 
