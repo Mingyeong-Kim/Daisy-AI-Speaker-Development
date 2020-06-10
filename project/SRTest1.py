@@ -30,14 +30,37 @@ try:
     print(sentence)
     '''
     word_list = []
-    word_list = r.recognize_sphinx(audio).split(' ')
-    
-    if 'the' in word_list:
-        print("removing 'the'")
-        word_list.remove('the') 
 
+    for words in r.recognize_sphinx(audio).split(' '):
+        if (words == 'the') or (words =='is'):
+            continue
+        else:
+            word_list.append(words)
     print(word_list)
+
+    sqlquery = []
+
+    for loop in word_list:
+        if loop == 'what' or loop =='which' or loop =='where':
+            sqlquery.append("SELECT ")
+
+        elif loop == ('place' or 'station'):
+            # sqlquery.append("FROM_STATION_NAME ")
+            sqlquery.append("from divvy_2015 ")
+            sqlquery.append("group by FROM_STATION_NAME ")
+
+        elif loop == ('most'):
+            sqlquery.append("order by count(*) desc ")
+            sqlquery.insert(1,"count(*) ")
+
+    
+    strsqlquery= ''.join(sqlquery) + ';'
+    print(strsqlquery)
+    
     engine.say(r.recognize_sphinx(audio))
+
+    engine.say(strsqlquery)
+
     engine.runAndWait()
 except sr.UnknownValueError:
     print("Sphinx could not understand audio")

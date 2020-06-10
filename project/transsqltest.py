@@ -14,6 +14,30 @@ print(word_list)
 
 sqlquery = []
 
+for loop in word_list:
+    if loop == 'What' or loop =='Which' or loop =='Where':
+        sqlquery.append("SELECT ")
+
+    elif loop == ('place' or 'station'):
+        sqlquery.append("FROM_STATION_NAME ")
+        sqlquery.append("from divvy_2015 ")
+    
+    elif loop == ('where'):
+        sqlquery.append("group by FROM_STATION_NAME ")
+
+    elif loop == ('most'):
+        sqlquery.append("order by count(*) desc")
+        sqlquery.insert(1,"count(*) ")
+         
+strsqlquery= ''.join(sqlquery) + ';'
+print(strsqlquery)
+
+
+
+
+'''
+sqlquery = []
+
 if word_list[0] == ("Where" or "Which" or "How"):
     sqlquery.append("SELECT ")
 	        
@@ -24,8 +48,6 @@ if word_list[2] == ('place' or 'station'):
 
 print(sqlquery)
 print(''.join(sqlquery))
-
-'''
 word_li = []
 word_li = sentence.split(' ')
 print(word_li)
