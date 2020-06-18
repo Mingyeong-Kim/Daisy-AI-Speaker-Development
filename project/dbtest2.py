@@ -6,7 +6,7 @@ import sqlite3
 import pyttsx3
 engine = pyttsx3.init()
 rate = engine.getProperty('rate')   
-engine.setProperty('rate', 130) 
+engine.setProperty('rate', 130)
 
 try:
     sqliteConnection = sqlite3.connect("C:\\Users\\USER\\divvy.db")
@@ -19,24 +19,17 @@ try:
     record = cursor.fetchall()
     print("SQLite Database Version is: ", record)
 
-    engine.say("How many males are used Divvy bikes?")
-    engine.runAndWait()
-    sqlite_Q1 = "select count(*) from divvy_2015 where gender='Male';"
-    rows = cursor.execute(sqlite_Q1).fetchall()
-    print(rows[0])
-    engine.say('The answer is',rows)
-    engine.runAndWait()
+    sqlite_Q1 = "select count(*) from divvy_2015 group by from_station_name order by count(*) desc;"
     print("Success")
-    '''
+    print(cursor)
     for row in cursor:
-        engine.say("How many males are used Divvy bikes?")
+        #engine.say("How many males are used Divvy bikes?")
+        #engine.runAndWait()
+        print(row[0])
+        engine.say(row[0])
         engine.runAndWait()
-        print(row)
-        speech_row = row
-        print(speech_row)
-        engine.say(speech_row)
         print("\n")
-    '''
+
     cursor.close()
 
 except sqlite3.Error as error:
