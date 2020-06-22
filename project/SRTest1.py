@@ -18,7 +18,7 @@ with sr.Microphone(device_index=1, chunk_size=1024, sample_rate=48000) as source
     r.energy_threshold = 1000
     r.dynamic_energy_threshold = True
     r.dynamic_energy_adjustment_damping = 0.15
-    r.dynamic_energy_adjustment_ratio = 2.0
+    r.dynamic_energy_adjustment_ratio = 1.5
     r.pause_threshold = 0.8
     print("Say something!")
     audio = r.listen(source)
@@ -42,15 +42,16 @@ try:
 
     for loop in word_list:
         if loop == 'what' or loop =='which' or loop =='where' or loop == "where's":
-            sqlquery.append("select")
+            sqlquery.append("select ")
 
         elif loop == ('place' or 'station'):
             # sqlquery.append("FROM_STATION_NAME ")
             sqlquery.append("from divvy_2015 ")
             sqlquery.append("group by from_station_name ")
 
-        elif loop == ('most'):
+        elif loop == 'most' or (loop == 'almost'):
             sqlquery.append("order by count(*) desc ")
+            sqlquery.append("limit 1 ")
             sqlquery.insert(1,"count(*) ")
 
     
@@ -72,15 +73,21 @@ try:
 
     # sqlite_Q1 = "select count(*) from divvy_2015 where gender='Male';"
     cursor.execute(strsqlquery)
-    print("Success")
-
+    '''
+    row = cursor.fetchall()
+    print(row[0])
+    engine.say(row[0])
+    engine.runAndWait()
+    print("\n")
+    '''
+    
+    # cursor.fetchall()
     for row in cursor:
         print(row)
-        print(row[0])
-        engine.say(row[0])
+        engine.say('The answer is {0}'.format(row))
         engine.runAndWait()
         print("\n")
-
+    
     cursor.close()
 
     engine.runAndWait()

@@ -22,7 +22,7 @@ try:
     engine.say("How many males are used Divvy bikes?")
     engine.runAndWait()
     sqlite_Q1 = "select count(*) from divvy_2015 where gender='Male';"
-    rows = cursor.execute(sqlite_Q1).fetchall()
+    rows = cursor.execute(sqlite_Q1)
     print(rows[0])
     engine.say('The answer is',rows)
     engine.runAndWait()
