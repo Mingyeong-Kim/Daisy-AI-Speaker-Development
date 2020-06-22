@@ -32,11 +32,12 @@ try:
     word_list = []
     
     for words in r.recognize_sphinx(audio).split(' '):
-        if (words == 'the') or (words =='is'):
+        if (words == 'the') or (words =='is') or (words == 'a') or (words == 'of'):
             continue
         else:
             word_list.append(words)
     print(word_list)
+    
 
     sqlquery = []
 
