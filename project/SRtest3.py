@@ -8,6 +8,10 @@ engine = pyttsx3.init()
 rate = engine.getProperty('rate')               
 engine.setProperty('rate', 130) 
 
+engine.say("Hi, I'm Daisy")
+engine.runAndWait()
+print("Hi, I'm Daisy")
+
 # obtain audio from the microphone
 r = sr.Recognizer()
 
@@ -20,7 +24,11 @@ with sr.Microphone(device_index=1, chunk_size=1024, sample_rate=48000) as source
     r.dynamic_energy_adjustment_damping = 0.15
     r.dynamic_energy_adjustment_ratio = 1.5
     r.pause_threshold = 0.8
+
+    engine.say("Say something!")
+    engine.runAndWait()
     print("Say something!")
+
     audio = r.listen(source)
 
 # recognize speech using Sphinx
@@ -42,11 +50,9 @@ try:
     sqlquery = []
 
     for loop in word_list:
-        if loop == 'what' or loop =='which' or loop =='where' or loop == "where's":
-            sqlquery.append("select ")
 
-        elif loop == 'bicycles':
-            sqlquery.append("from divvy_2015 ")
+        if loop == 'what' or loop =='which' or loop =='where' or loop == "where's" or loop == 'how':
+            sqlquery.append("select ")
 
         elif loop == ('place' or 'station'):
             sqlquery.append("from_station_name ")
@@ -54,9 +60,6 @@ try:
 
         elif loop == 'age':
             sqlquery.append("(birthyear) ")
-
-        elif loop == "female":
-            sqlquery.append("from divvy_2015 where gender='Female' ")
 
         elif loop == 'average':
             sqlquery.append('avg')
@@ -68,16 +71,26 @@ try:
             sqlquery.append('from divvy_2015 ')
             sqlquery.append('group by ')
 
-        elif loop == 'for':
-            sqlquery.append('where ')
-
         elif loop == 'members' or loop == 'member':
-            sqlquery.append("usertype='Subscriber' ")
+            sqlquery.append("from divvy_2015 where usertype='Subscriber' ")
         
         elif loop == 'most' or (loop == 'almost'):
             sqlquery.append("order by count(*) desc ")
             sqlquery.append("limit 1 ")
             # sqlquery.insert(1,"count(*), ")
+        
+        elif loop == ('many'):
+            sqlquery.append("count(*) ")
+
+        elif loop == ('customer'):
+            sqlquery.append('from divvy_2015 where usertype="Customer" ')
+                
+        elif loop == ('subscriber'):
+            sqlquery.append('from divvy_2015 where usertype="Subscriber" ')
+                
+        elif loop == 'female' or (loop == 'females'):
+            sqlquery.append('from divvy_2015 where gender="Female"')
+
 
     
     strsqlquery= ''.join(sqlquery) + ';'
@@ -115,15 +128,20 @@ try:
     
     cursor.close()
 
-    engine.runAndWait()
 except sr.UnknownValueError:
     print("Sphinx could not understand audio")
+    engine.say("Sphinx could not understand audio.Could you tell me question again?")
+    engine.runAndWait()
 
 except sr.RequestError as e:
     print("Sphinx error; {0}".format(e))
+    engine.say("I can't understand your question. Could you tell me question again?")
+    engine.runAndWait()
 
 except sqlite3.Error as error:
     print("Error while connecting to sqlite", error)
+    engine.say("I can't understand your question. Could you tell me question again?")
+    engine.runAndWait()
 
 finally:
     if (sqliteConnection):
