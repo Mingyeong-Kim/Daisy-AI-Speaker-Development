@@ -45,6 +45,14 @@ try:
         else:
             word_list.append(words)
     print(word_list)
+
+    def avg():
+        for i in range(len(word_list)):
+            if word_list[i]=='average':
+                if word_list[i+1] == 'time':
+                    return('avg(tripduration) ')
+                elif word_list[i+1] == 'age':
+                    return('avg(tripduration) ')
     
 
     sqlquery = []
@@ -62,7 +70,7 @@ try:
             sqlquery.append("(birthyear) ")
 
         elif loop == 'average':
-            sqlquery.append('avg')
+            sqlquery.append(avg())
             
         elif loop == 'time':
             sqlquery.append('(tripduration) ')
