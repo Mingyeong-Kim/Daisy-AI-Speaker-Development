@@ -26,7 +26,6 @@ for loop in word_list:
         sqlquery.append("from_station_name ")
         sqlquery.append("from divvy_2015 group by from_station_name ")
 
-
     elif loop == 'average':
         sqlquery.append(avg()) 
 
