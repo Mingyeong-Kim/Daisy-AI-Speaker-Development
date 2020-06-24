@@ -100,7 +100,7 @@ try:
             sqlquery.append('from divvy_2015 where usertype="Subscriber" ')
                 
         elif loop == 'female' or (loop == 'females'):
-            sqlquery.append('from divvy_2015 where gender="Female"'
+            sqlquery.append('from divvy_2015 where gender="Female" ')
         
         
     strsqlquery = ''.join(sqlquery) + ';'
