@@ -96,7 +96,7 @@ try:
         elif loop == 'members' or loop == 'member':
             sqlquery.append("from divvy_2015 where usertype='Subscriber' ")
         
-        elif loop == 'most':
+        elif loop == 'most' or loop == 'almost':
             sqlquery.append("order by count(*) desc ")
             sqlquery.append("limit 1 ")
         
@@ -116,6 +116,9 @@ try:
             continue
 
         elif loop == 'bicycles' or loop == 'bicycle':
+            continue
+
+        elif loop == 'people' or loop == 'them':
             continue
 
         else:
@@ -193,9 +196,13 @@ except:
         sqliteConnection.close()
         print("The SQLite connection is closed")
         print("\n")
-
+'''
 finally:
     print("restart program")
     print("\n")
     engine.say("restart program")
     engine.runAndWait()
+'''
+print("end prgram")
+engine.say("goodbye")
+engine.runAndWait()
