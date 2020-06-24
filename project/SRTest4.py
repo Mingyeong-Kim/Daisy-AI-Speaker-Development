@@ -20,7 +20,7 @@ r = sr.Recognizer()
 with sr.Microphone(device_index=1, chunk_size=1024, sample_rate=48000) as source:
     print("Please wait. Calibrating microphone...") 
     r.adjust_for_ambient_noise(source, duration=1) 
-    r.energy_threshold = 1000
+    r.energy_threshold = 500
     r.dynamic_energy_threshold = True
     r.dynamic_energy_adjustment_damping = 0.15
     r.dynamic_energy_adjustment_ratio = 1.5
@@ -47,7 +47,7 @@ try:
 
     # remove articles an be_verbs
     for words in all_words_list:
-        if (words == 'the') or (words =='is') or (words == 'a') or (words == 'of') or words(words == 'an'):
+        if (words == 'the') or (words =='is') or (words == 'a') or (words == 'of') or (words == 'an'):
             continue
         else:
             words_list.append(words)
@@ -75,14 +75,9 @@ try:
             sqlquery.append("from_station_name ")
             sqlquery.append("from divvy_2015 group by from_station_name ")
 
-        elif loop == 'age':
-            sqlquery.append("(birthyear) ")
-
         elif loop == 'average':
             sqlquery.append(avg())
             
-        elif loop == 'time':
-            sqlquery.append('(tripduration) ')
 
         elif loop == 'each':
             sqlquery.append('from divvy_2015 ')
@@ -94,7 +89,6 @@ try:
         elif loop == 'most' or (loop == 'almost'):
             sqlquery.append("order by count(*) desc ")
             sqlquery.append("limit 1 ")
-            # sqlquery.insert(1,"count(*), ")
         
         elif loop == ('many'):
             sqlquery.append("count(*) ")
@@ -102,15 +96,15 @@ try:
         elif loop == ('customer'):
             sqlquery.append('from divvy_2015 where usertype="Customer" ')
                 
-        elif loop == ('subscriber'):
+        elif loop == 'subscriber' or loop == 'subscribers':
             sqlquery.append('from divvy_2015 where usertype="Subscriber" ')
                 
         elif loop == 'female' or (loop == 'females'):
-            sqlquery.append('from divvy_2015 where gender="Female"')
-
-
-    strsqlquery= ''.join(sqlquery) + ';'
-    print(strsqlquery) # sql query 
+            sqlquery.append('from divvy_2015 where gender="Female"'
+        
+        
+    strsqlquery = ''.join(sqlquery) + ';'
+    print(strsqlquery)
 
     # connect database,sqlite3
     sqliteConnection = sqlite3.connect("C:\\Users\\USER\\divvy.db")
