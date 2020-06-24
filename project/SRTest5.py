@@ -49,7 +49,7 @@ try:
     print(all_words_list)
     print("\n")
 
-    # remove articles an be_verbs
+    # remove articles an verbs
     for words in all_words_list:
 
         if (words == 'the') or (words == 'a') or (words == 'of') or (words == 'an'):
