@@ -7,6 +7,10 @@ import sqlite3
 engine = pyttsx3.init()
 rate = engine.getProperty('rate')               
 engine.setProperty('rate', 130)
+
+voices = engine.getProperty('voices')       #getting details of current voice
+engine.setProperty('voice', voices[0].id)  #changing index, changes voices. o for male
+# engine.setProperty('voice', voices[1].id)   #changing index, changes voices. 1 for female
  
 # start conversation 
 engine.say("Hi, I'm Daisy")
@@ -21,7 +25,7 @@ r = sr.Recognizer()
 with sr.Microphone(device_index=1, chunk_size=1024, sample_rate=48000) as source:
     print("Please wait. Calibrating microphone...") 
     r.adjust_for_ambient_noise(source, duration=1) 
-    r.energy_threshold = 500
+    r.energy_threshold = 1000
     r.dynamic_energy_threshold = True
     r.dynamic_energy_adjustment_damping = 0.15
     r.dynamic_energy_adjustment_ratio = 1.5
@@ -54,7 +58,7 @@ try:
 
         if (words == 'the') or (words == 'a') or (words == 'of') or (words == 'an'):
             continue
-        elif words == 'that' or words == 'for':
+        elif words == 'that' or words == 'for' or words == 'as':
             continue
         elif words == 'is' or words == 'use' or words == 'used' or words == 'rent' or words == 'rented':
             continue

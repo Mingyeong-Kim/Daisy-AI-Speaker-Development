@@ -9,6 +9,7 @@ sqlquery = []
 avg_list = []
 
 
+
 def avg():
     for i in range(len(word_list)):
         if word_list[i]=='average':
