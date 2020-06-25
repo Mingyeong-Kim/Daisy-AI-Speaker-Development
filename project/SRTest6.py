@@ -31,26 +31,37 @@ with sr.Microphone(device_index=1, chunk_size=1024, sample_rate=48000) as source
     r.dynamic_energy_adjustment_damping = 0.15
     r.dynamic_energy_adjustment_ratio = 1.5
     r.pause_threshold = 0.8
+    '''
+    recognizer_instance.recognize_sphinx(audio_data: AudioData, language: str = "en-US", 
+    keyword_entries: Union[Iterable[Tuple[str, float]], None] = None, 
+    grammar: Union[str, None] = None, show_all: bool = False) 
+    -> Union[str, pocketsphinx.pocketsphinx.Decoder]
+    '''
+
+    
+    # get user's speech 
+    audio1 = r.listen(source)
+    daisy = "hey daisy"
+    
+    print("Sphinx thinks you said " + r.recognize_sphinx(audio1, language = "en-US", keyword_entries = [(daisy,0.8)]))
     
     # speak to user 'say something!'
-    engine.say("Say something!")
+    engine.say("how can I help you?")
     engine.runAndWait()
-    print("Say something!")
+    print("how can I help you?")
     print("\n")
 
-    # get user's speech 
-    audio = r.listen(source)
-
+    audio2 = r.listen(source)
 try:
     # recognize speech using Sphinx
-    print("Sphinx thinks you said " + r.recognize_sphinx(audio))
+    print("Sphinx thinks you said " + r.recognize_sphinx(audio2))
     print("\n")
     
     all_words_list=[] # all words list 
     words_list = [] # words list except articles and be_verb 
 
     # split sentence into words
-    all_words_list = r.recognize_sphinx(audio).split(' ')
+    all_words_list = r.recognize_sphinx(audio2).split(' ')
     print(all_words_list)
     print("\n")
 
@@ -201,6 +212,7 @@ except:
         sqliteConnection.close()
         print("The SQLite connection is closed")
         print("\n")
+
 '''
 finally:
     print("restart program")
