@@ -8,17 +8,13 @@ engine = pyttsx3.init()
 rate = engine.getProperty('rate')               
 engine.setProperty('rate', 130)
 
+print("start program")
+
 # getting details of current voice
 voices = engine.getProperty('voices')       
 engine.setProperty('voice',voices[1].id)  
 # engine.setProperty('voice', voices[1].id) 
  
-# start conversation 
-engine.say("Hi, I'm Daisy")
-engine.runAndWait()
-print("Hi, I'm Daisy")
-print("\n")
-
 # obtain audio from the microphone
 r = sr.Recognizer()
 
@@ -31,26 +27,37 @@ with sr.Microphone(device_index=1, chunk_size=1024, sample_rate=48000) as source
     r.dynamic_energy_adjustment_damping = 0.15
     r.dynamic_energy_adjustment_ratio = 1.5
     r.pause_threshold = 0.8
-    '''
-    recognizer_instance.recognize_sphinx(audio_data: AudioData, language: str = "en-US", 
-    keyword_entries: Union[Iterable[Tuple[str, float]], None] = None, 
-    grammar: Union[str, None] = None, show_all: bool = False) 
-    -> Union[str, pocketsphinx.pocketsphinx.Decoder]
-    '''
-   
-    # get user's speech 
-    audio1 = r.listen(source)
-    daisy = "hey daisy"     
-
-    print("Sphinx thinks you said " + r.recognize_sphinx(audio1, language = "en-US", keyword_entries = [(daisy,0.8)]))
     
-    # speak to user 'say something!'
-    engine.say("how can I help you?")
+    # set initial value
+    start = True
+
+    # start conversation
+    while (start == True):
+        audio1 = r.listen(source)
+        daisy = "hey daisy"
+        try: 
+            recognize = r.recognize_sphinx(audio1, language = "en-US", keyword_entries = [(daisy,0.8)])
+            print(recognize) 
+            engine.say("Hi, I'm Daisy")
+            engine.runAndWait()
+            print("Hi, I'm Daisy")
+            print("\n")
+            break
+        except sr.UnknownValueError:
+            print("unknown")
+            continue
+        except:
+            print("other error")
+            continue
+
+    
+    engine.say("what is your question?")
     engine.runAndWait()
-    print("how can I help you?")
+    print("what is your question?")
     print("\n")
 
     audio2 = r.listen(source)
+    
 
 try:
 
@@ -224,3 +231,4 @@ finally:
 print("end prgram")
 engine.say("goodbye")
 engine.runAndWait()
+
