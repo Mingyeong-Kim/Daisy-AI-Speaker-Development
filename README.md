@@ -2,7 +2,7 @@
 
 - **프로젝트 기간: 2020.05 - 2020.06(8주, 팀)**
 - **프로젝트 개요: 시카고 공공자전거(Divvy) 이용 데이터를 기반으로한 영어 질의응답 AI 스피커 개발**
-- **사용기술: Visual Studio Code, Python**
+- **사용기술: python(visual studio code), sqlite3(DB), Google API Client Library, PyAudio 0.2.11(Microphone), PocketSphinx, FLAC encoder, SpeechRecognition, PyPI Library**
 - **역할: 팀장, SW 프로그래머(programmer), 데이터베이스 구축 및 연결, 음성인식, TTS,STT 로직 코드 구현**
 
 
@@ -12,22 +12,58 @@
 
 
 ## 프로젝트 과정 및 내용
+- **프로젝트 개요(Project Outline)**
+<img width="500"  height="300" src="https://user-images.githubusercontent.com/65681568/137986387-da792c15-503e-409f-a9c1-66da58155ea6.PNG">
 
-1. 세일여행사 직원 인터뷰를 통한 회사 업무 파악
-2. 업무 기술서 작성
-3. 업무 흐름도(DFD Level 0) 및 업무 기능도 도출
-4. Toad Data Modeler를 사용한 논리적 ERD 설계
-5. Toad Data Modeler를 사용한 물리적 ERD 설계
-6. 세일여행사 서비스 업무 관리 시스템 용어사전, 도메인 기술서 작성
-7. MySQL을 사용하여 데이터 베이스 구축
-8. SQL 쿼리를 통한 테스트
+- **프로그램 로직(Program logic)**
+<img width="600"  height="350" src="https://user-images.githubusercontent.com/65681568/137985791-d138313c-136c-44ab-93bd-e58c9be79766.PNG">
+
+
+1. 필요 라이브러리 및 API 설정
+   1-1.필요한 프로그램 설치(Prepare Requirements tools)
+   
+    * (1)	python 3.7(visual studio code)
+
+    * (2)	PyAudio 0.2.11(Microphone) 
+        – pip install pyaudio
+    
+    * (3)	PocketSphinx 
+        – recognizer_instance.recognize_sphinx
+    
+    * (4)	Google API Client Library for Python 
+        - recognizer_instance.recognize_google_cloud
+        - pip install google-api-python-client
+    
+    * (5) FLAC encoder(voice file)
+        - sudo apt-get install flac
+
+    1-2. install SpeechRecognition
+        - pip install SpeechRecognition
+
+    1-3. download python library (from PyPI)
+
+    1-4. python setup.py install
+    
+2. 데이터 베이스 생성 및 데이터 저장
+   - 데이터(Data): Divvy data 2015_Q2
+ 
+3. 마이크 음성인식 설정 및 테스트
+   - 음성인식 코드 구현
+   - Microphone 변수(parameter) 조절  
+   - 음성인식이 가장 잘되는 요건 및 변수설정 찾기
+
+4. STT,TTS 로직 코드 구현
+   - 인식된 문장(질문)을 바탕으로 얻고자하는 정보(대답) 추출을 위한 SQL쿼리로 변경해주는 코드 구현(Speech to Text)
+   - 사용자가 얻고자 하는 답변을 영어 문장으로 구현하여 음성으로 전달하는 코드 구현(Text To Speech)
+   - 예시 문장과 답변을 설정하여 코드를 구현함
+
+5. 프로그램 테스트
 
 ## 프로젝트 결과
-- **업무 기능도**
-<img width="500"  height="350" alt="세일여행사 업무기능도" src="https://user-images.githubusercontent.com/65681568/137960066-b7f7fa77-2d58-48d6-a577-7b522a0d4d83.PNG">
+- 6개 질문에 대한 Q&A speaker 프로그램 로직 코드 완성
 
-- **논리적 DB**
-<img width="500"  height="600" alt="(주)세일여행사 서비스 업무 관리 논리적 ERD" src="https://user-images.githubusercontent.com/65681568/137959774-24f92889-56dc-478a-baf0-80a6327d1965.PNG">
+**추후 보완점**
+- 외부의 소음이나 다양한 사람의 발음을 인식하지 못하는 경우가 있음
+- 다양한 질문에 대한 STT,TTS 로직 코드 구현 필요
 
-- **물리적 DB** 
-<img width="500"  height="600" alt="(주)세일여행사 서비스 업무 관리 물리적 ERD" src="https://user-images.githubusercontent.com/65681568/137959551-9aee6e91-5df2-4922-a4ae-5f192a9fe956.PNG">
+
