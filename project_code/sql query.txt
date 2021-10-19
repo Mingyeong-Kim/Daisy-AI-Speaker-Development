@@ -1,0 +1,29 @@
+
+
+
+1. where is the place that people use the most?
+- select from_station_name 
+from divvy_2015 group by from_station_name 
+order by count(*) desc limit 1;
+
+2. what is the average time of bicycles for members?
+select avg(tripduration) from divvy_2015
+where usertype='Subscriber';
+
+3. what is the average age of female users?
+select avg(birthyear) from divvy_2015 where gender='Female' ;
+
+4. How many people(customer) rent bicycles?
+select count(*)
+from divvy_2015 where usertype="Customer";
+
+5. How many subscribers rent bicycles? 
+select count(*)
+from divvy_2015 where usertype="Subscriber";
+
+6. How many females rent bicycles? 
+select count(*)
+from divvy_2015 where gender="Female";
+
+
+
