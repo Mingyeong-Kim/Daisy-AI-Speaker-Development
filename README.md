@@ -2,7 +2,7 @@
 
 - **프로젝트 기간: 2020.05 - 2020.06(8주, 팀)**
 - **프로젝트 개요: 시카고 공공자전거(Divvy) 이용 데이터를 기반으로한 영어 질의응답 AI 스피커 개발**
-- **사용기술: python(visual studio code), sqlite3(DB), Google API Client Library, PyAudio 0.2.11(Microphone), PyPI Library**
+- **사용 기술: python(visual studio code), sqlite3(DB), Google API Client Library, PyAudio 0.2.11(Microphone), PyPI Library**
 - **역할: 팀장, SW 프로그래머(programmer), 데이터베이스 구축 및 연결, 음성인식, TTS,STT 로직 코드 구현**
 
 
