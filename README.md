@@ -7,7 +7,7 @@
 
 
 ## 프로젝트 목표
-- 영어 또는 한국어 음성으로 특정 데이터에 대한 질의응답이 가능한 무료 오픈소스 기기(AI Speaker)를 개발하는 것을 목표로 했습니다.
+- 영어 또는 한국어 음성으로 특정 데이터에 대한 질의응답이 가능한 무료 오픈소스 기기(AI Speaker)를 개발하는 것을 목표로 함
 - The goal of this project will be to create a free and opensource device that can perform ad_hoc data qaureies(SQL) via voice in English or Korean. 
 
 
